@@ -1,0 +1,133 @@
+def tag(numID,tag,ob_img):
+	for i in ob_img:
+	if i.num == numID:
+	i.tags.append(tag)
+	
+	def abrir_img(path_img):
+	path_temp = path_img +".gif"
+	try:
+	Image.open(path_img).save(path_temp)
+	except IOError:
+	print("No se puede convertir la imagen")
+	imagen1 = PhotoImage(file=path_temp)
+	return imagen1
+*#########
+
+from Tkinter import *
+import Pmw
+class EntryValidation:
+def __init__(self, master):
+now = tag(tag.tag())
+self._tag = Pmw.EntryField(master,
+ labelpos = 'w', label_text = 'tag:',
+ value = '%d/%d/%d' % (now[1], now[2], now[0]),
+ validate = {'validator':'tag'}) 
+
+ modifiedcommand = self.valueChanged)
+self._ssn = Pmw.EntryField(master,
+labelpos = 'w', label_text = 'Social Security #:',
+validate = self.validateSSN, value = '')
+fields = (self._date, self._time, self._real, self._ssn)
+for field in fields:
+field.pack(fill='x', expand=1, padx=12, pady=8)
+Pmw.alignlabels(fields)
+self._date.component('entry').focus_set()
+def valueChanged(self):
+print 'Value changed, value is', self._real.get()
+def validateSSN(self, contents):
+result = -1
+if '-' in contents:
+ssnf = string.split(contents, '-')
+try:
+if len(ssnf[0]) == 3 and \
+ len(ssnf[1]) == 2 and \
+ len(ssnf[2]) == 4:
+result = 1
+except IndexError:
+result = -1
+elif len(contents) == 9:
+result = 1
+return result
+if __name__ == '__main__':
+root = Tk()
+root.option_add('*Font', 'Verdana 10 bold')
+root.option_add('*EntryField.Entry.Font', 'Courier 10')
+root.option_add('*EntryField.errorbackground', 'yellow')
+Pmw.initialise(root, useTkOptionDb=1)
+root.title('Pmw EntryField Validation')
+quit = Button(root, text='Quit', command=root.destroy)
+quit.pack(side = 'bottom')
+top = EntryValidation(root)
+root.mainloop()
+
+######
+
+from Tkinter import *
+import Image, ImageTk, os
+class Scrapbook:
+def __init__(self, master=None):
+self.master = master
+self.frame = Frame(master, width=400, height=420, bg='gray50',
+ relief=RAISED, bd=4)
+self.lbl = Label(self.frame)
+self.lbl.place(relx=0.5, rely=0.48, anchor=CENTER)
+self.images = []
+images = os.listdir("images")
+xpos = 0.05
+for i in range(10):
+Button(self.frame, text='%d'%(i+1), bg='gray10',
+ fg='white', command=lambda s=self, img=i: \
+ s.getImg(img)).place(relx=xpos, rely=0.99, anchor=S)
+xpos = xpos + 0.08
+self.images.append(images[i])
+Button(self.frame, text='Done', command=self.exit,
+ bg='red', fg='yellow').place(relx=0.99, rely=0.99, anchor=SE)
+self.frame.pack()
+self.getImg(0)
+def getImg(self, img):
+self.masterImg = Image.open(os.path.join("images",
+ self.images[img]))
+self.masterImg.thumbnail((400, 400))
+self.img = ImageTk.PhotoImage(self.masterImg)
+self.lbl['image'] = self.img
+def exit(self):
+self.master.destroy()
+root = Tk()
+
+#######
+
+
+	ventana = Tk()
+	ventana.title("Clasificador de Imagenes")
+	ventana.config(bg="gray")
+	ventana.geometry("600x700")
+	
+	Label = Label(ventana, image = abrir_img(ob_img[0].ruta))
+	Label.grid(row=1,column=2)
+	
+	boton1 = button(ventana,"anterior")
+	boton1.button.grid(row=1,column=1)
+	
+	
+	boton2 = button(ventana, "siguiente")
+	boton2.button.grid(row=1,column=2)
+	
+	boton3 = button(ventana, "finalizar")
+	boton3.button.grid(row=1,column=3)
+	
+	ventana.mainloop()
+	
+		
+	ob_img = []
+	path_carpeta = raw_input("introduce la direcion de la carpeta que contiene las imagenes")
+	
+	path_carpetas = comprobar_carpeta(path_carpeta)
+	print path_carpetas
+	for i in path_carpetas:
+	nom_img_temp = nom_files(i)
+	ob_img_temp = crear_ob_img(nom_img_temp,i)
+	for j in ob_img_temp:
+	ob_img.append(j)
+	for i in ob_img:
+	print [i.num,i.nom,i.ruta]
+
