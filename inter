@@ -10,11 +10,24 @@ self.lbl.place(relx=0.5, rely=0.48, anchor=CENTER)
 self.images = []
 images = os.Listaimagen("images")
 xpos = 0.05
-for i in range(10):
-Button(self.frame, text='%d'%(i+1), bg='gray10',
- fg='white', command=lambda s=self, img=i: \
- s.getImg(img)).place(relx=xpos, rely=0.99, anchor=S)
-xpos = xpos + 0.08
+ for i in range(10):
+  tkimage = abrir_img(ob_img[num].ruta)
+    label = label = Label(ventana,image = tkimage)
+    label.image = tkimage
+    label.grid(row=1,column=2)
+    caja = Entry(ventana,textvariable = nueva_etiqueta)
+    caja.grid(row=2,column=2)
+    etiqueta = caja.get()
+    img_para_mostrar = []
+    etiqueta = caja.get()
+     if etiqueta != '':
+        for i in ob_img:
+            for j in ob_img[i].tags:
+                if j == etiqueta:
+                    img_para_mostrar.append(i)
+     ventana.quit()
+     mostrar_etiquetadas(img_para_mostrar,0)
+ xpos = xpos + 0.08
 self.images.append(images[i])
 Button(self.frame, text='terminar', command=self.exit, bg='red', fg='yellow').place(relx=0.99, rely=0.99, anchor=SE)
 boton1 = button(ventana,"siguient") boton1.button.grid(row=1,column=1) boton2 = button(ventana, "anterior")
@@ -24,7 +37,7 @@ self.frame.pack()
 self.getImg(0)
 def getImg(self, img):
 self.masterImg = Image.open(os.path.join("images",
- self.images[img]))
+self.images[img]))
 self.masterImg.thumbnail((400, 400))
 self.img = ImageTk.PhotoImage(self.masterImg)
 self.lbl['image'] = self.img
