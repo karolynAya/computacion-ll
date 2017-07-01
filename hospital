@@ -1,0 +1,39 @@
+doctores = ['manuel', 'lupe', 'Fulanita', 'Panchito']
+asistencia = [
+[True, True, True, False, False, False, False],
+[True, True, True, False, True,  False, True ],
+[True, True, True, True,  True,  True,  True ],
+[True, True, True, False, True,  True,  True ]]
+
+#Definimos las funciones 
+def total_por_doctor(tabla):
+    #Variables
+    asistencia = 0
+    asistencia_turnos = []
+    #Recorremos la lista
+    for doctor in tabla:
+        for clase in doctor:
+            if clase: 
+                asistencias += 1 #Aumentamos el contador de asistencias.
+        asistencia_turnos.append(asistencias)
+        asistencias = 0
+    return asistencia_turnos
+
+def total_por_fechas(tabla):
+    #Variables
+    cant_fechas = len(tabla[0]) 
+    asistencia_turnos = []
+    for i in range(cant_turnos):
+        asistencia_turnos.append(0)
+
+    for doctor in tabla:
+        for turnos in range(cant_turnos): 
+            if doctor[clase]: asistencia_turnos[clase]+=1  
+    
+    return asistencia_turnos
+ 
+def mejor_doctor(tabla):
+    max_asistencia = max(total_por_doctor(tabla))
+    for i in range(len(doctores)):
+        if total_por_doctor(tabla)[i] == max_asistencia:
+            return turnos[i]
