@@ -1,0 +1,56 @@
+empleados = []
+for i in range (15):
+    empleados.append([0]*3)
+empleados [0] = [00,3,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+empleados [1] = [01,3,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+empleados [2] = [02,2,[['fax','emails'],['telefono','copiar']]
+empleados [3] = [03,2,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+empleados [4] = [04,2,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+empleados [5] = [05,3,[['fax','emails'],['telefono','copiar'], ]
+empleados [6] = [06,3,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+empleados [7] = [07,2,[['fax','emails'],['recoger','archivar']] ]
+empleados [8] = [08,2,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+empleados [9] = [09,2,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+empleados [10] = [10,2,[['telefono','copiar'],['recoger','archivar']] ]
+empleados [11] = [11,2,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+empleados [12] = [12,2,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+empleados [13] = [13,3,[['fax','emails'],['recoger','archivar']] ]
+empleados [14] = [14,3,[['fax','emails'],['telefono','copiar'],['recoger','archivar']] ]
+
+def tarea():
+    a= empleados[0][1]
+    b=0
+    for i in range (len(empleados)):
+        if empleados [i][1]<a:
+            a=empleados [i][1]
+            b = i
+    c = input("inserta el area solicitante: ")
+    d = input("inserta ls descripción: ")
+    e =[c,d]
+    empleados [b][2].append(e)
+    empleados [b][1] += 1
+    
+def descartar():
+    for i in range ((len (empleados))-14):
+        print ('empleado ', i+15, ' :')
+        a =empleados [i+14][1]
+        for x in range (a):
+            print(empleados [i+14][2][a-x-1])
+            empleados [i+14][2].pop()
+            empleados [i+14][1] -= 1
+
+def mostrar():
+    print(empleados)
+    
+while True:
+    print ('Menú:')
+    print ('1.-Agregar una tarea al que tiene menos')
+    print ('2.-Mostrar y descartar tareas del empleado 15 al 30')
+    print ('3.-Mostrar pila entera')
+    opcion = input("Inserta tu opción: ")
+    if opcion=='1':
+        tarea()
+    if opcion=='2':
+        descartar()
+    if opcion=='3':
+        mostrar()
