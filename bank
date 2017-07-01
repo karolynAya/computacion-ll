@@ -1,0 +1,56 @@
+movimientos = []
+for i in range (10):
+    movimientos.append([0]*7)
+a = 0
+movimientos [0] = [9,1,1,2017,4444,1500,"deposito"]
+movimientos [1] = [8,27,3,2016,6666,3500,"deposito"]
+movimientos [2] = [7,18,12,2017,8888,1200,"deposito"]
+movimientos [3] = [6,21,12,2017,9999,200,"extraccion"]
+movimientos [4] = [5,27,1,2016,1111,900,"extraccion"]
+movimientos [5] = [4,12,7,2017,3333,1100,"deposito"]
+movimientos [6] = [3,16,7,2016,5555,2500,"extraccion"]
+movimientos [7] = [2,16,7,2016,2222,3000,"deposito"]
+movimientos [8] = [1,18,12,2017,7777,100,"extraccion"]
+movimientos [9] = [0,12,1,2017,8080,1500,"deposito"]
+
+def numero():
+    a= 0
+    for i in range (len(movimientos)):
+        if movimientos [i][3]==2017:
+            if movimientos [i][2]<=7:
+                a += 1
+    print ("El total de movimientos es: ",a)
+
+def a2016():
+    a =0
+    b =0
+    for i in range (len(movimientos)):
+        if movimientos [i][3]==2016:
+            if movimientos [i][6]=="deposito":
+                a += movimientos [i][5]
+            elif movimientos [i][6]=="extraccion":
+                b += movimientos [i][5]
+    print("depositado: ",a," extraido: ",b)
+
+def saldo():
+    a = 0
+    for i in range (len(movimientos)):
+        if movimientos [i][3]==2016:
+            if movimientos [i][4]==8888:
+                if movimientos [i][6] == "deposito":
+                    a+= movimientos[i][5]
+                elif movimientos [i][6] == "extraccion":
+                    a-= movimientos[i][5]
+    print("El saldo de la cuenta es: ",a)
+while True:
+    print ('Menú:')
+    print ('1.-Depósitos del 01/01/2016 al 31/12/2017')
+    print ('2.-Depositado y Extraido del 2016')
+    print ('3.- Saldo de la cuenta 3333 en 2017')
+    opcion = input("Inserta tu opción: ")
+    if opcion=='1':
+        numero()
+    if opcion=='2':
+        a2017()
+    if opcion=='3':
+        saldo()
